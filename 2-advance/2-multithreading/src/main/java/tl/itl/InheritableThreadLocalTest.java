@@ -4,7 +4,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class ItlTest {
+/**
+ * @author: zh4ngyj
+ * @date: 2025/6/30 16:45
+ * @des: InheritableThreadLocal
+ */
+public class InheritableThreadLocalTest {
+
     public static final InheritableThreadLocal<String> itl = new InheritableThreadLocal<>();
 
     public static void main(String[] args) {
