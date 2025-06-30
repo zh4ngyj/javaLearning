@@ -7,6 +7,7 @@
     <groupId>com.way2ai.javaLearning</groupId>
     <artifactId>2-advance</artifactId>
     <version>1.0</version>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

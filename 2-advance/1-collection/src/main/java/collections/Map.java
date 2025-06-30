@@ -1,4 +1,4 @@
-package dataType;
+package src.main.java.collections;
 
 /**
  * @author: zh4ngyj
