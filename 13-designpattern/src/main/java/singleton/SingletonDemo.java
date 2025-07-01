@@ -17,6 +17,9 @@ public class SingletonDemo implements Serializable {
 
     // 饿汉式
 //    private static final SingletonDemo instance = new SingletonDemo();
+//    public static SingletonDemo getInstance() {
+//        return instance;
+//    }
 
     // 懒汉式
 //    private static SingletonDemo instance;
