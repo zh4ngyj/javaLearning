@@ -28,6 +28,7 @@
         <module>10-framework</module>
         <module>11-troubleshooting</module>
         <module>12-architecture</module>
+        <module>13-designpattern</module>
     </modules>
 
     <repositories>
