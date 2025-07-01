@@ -7,6 +7,12 @@ package generic;
  */
 public class GenericMethodTest {
 
+    public final static int num;
+
+    static {
+        num = 1;
+    }
+
     public static <E> void printArray(E[] inputArray) {
         for (E element : inputArray) {
             System.out.printf("%s ", element);
