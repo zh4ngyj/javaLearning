@@ -25,6 +25,8 @@ public class ThreadLocalTest {
         threadPool.execute(() -> {
             String subName = Thread.currentThread().getName();
             System.out.println(subName + " : " + tl.get());
+            tl.set("sub thread");
+            System.out.println(subName + " : " + tl.get());
         });
     }
 }
