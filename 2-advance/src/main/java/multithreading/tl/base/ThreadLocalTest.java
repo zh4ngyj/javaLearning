@@ -10,12 +10,12 @@ import java.util.concurrent.Executors;
  */
 public class ThreadLocalTest {
 
-    public static final ThreadLocal<String> tl = ThreadLocal.withInitial(() -> "init");
+    public static final ThreadLocal<String> tl = ThreadLocal.withInitial(() -> "init1");
 
     public static void main(String[] args) {
         // 主线程
         String mainName = Thread.currentThread().getName();
-        tl.set("hello world");
+        tl.set("init2");
         System.out.printf("%s : %s\n", mainName, tl.get());
         tl.remove();
         System.out.printf("%s : %s\n", mainName, tl.get());
