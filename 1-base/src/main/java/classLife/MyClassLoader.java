@@ -21,6 +21,7 @@ public class MyClassLoader extends ClassLoader{
         }
     }
 
+    // 从指定的位置读取class文件
     private byte[] loadClassData(String className) {
         String fileName = root + File.separator
                 + className.replace(".", File.separator) + ".class";
