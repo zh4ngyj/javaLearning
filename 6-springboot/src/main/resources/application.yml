@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+#      # 跨域访问
+#      cors:
+#        allowed-origins: "https://example.com"
+#        allowed-methods: "GET,POST"
+      exposure:
+        include: "*"
