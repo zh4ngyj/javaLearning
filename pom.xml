@@ -30,6 +30,7 @@
         <module>12-architecture</module>
         <module>13-designpattern</module>
         <module>14-custom-starter-project</module>
+        <module>15-shareding-jdbc</module>
     </modules>
 
     <repositories>

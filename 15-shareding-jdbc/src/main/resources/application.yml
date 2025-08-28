@@ -1,0 +1,72 @@
+# 场景一：分库分表（2库 x 2表），对外仍是单个 DataSource
+server:
+  port: 8080
+
+spring:
+  application:
+    name: shareding-demo
+  # 让 Boot 在非内存卡也执行 schema.sql
+  sql:
+    init:
+      mode: always
+
+  shardingsphere:
+    props:
+      sql-show:true # 控制台打印改写后的 SQL，便于观察
+    datasource:
+      # 定义两个真实数据源（通常在不同库/不同端口）
+      names: ds_0, ds_1
+
+      # 公共的 Hikari 配置（会应用到每个数据源）
+      common:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        minimum-idle: 2
+        maximum-pool-size: 10
+        max-lifetime: 300000
+        connection-timeout: 30000
+
+      ds_0:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/demo_0?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+        username: root
+        password: root
+
+      ds_1:
+        jdbc-url: jdbc:mysql://127.0.0.1:3307/demo_1?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+        username: root
+        password: root
+
+    rules:
+      sharding:
+        # 分布式主键生成器
+        key-generators:
+          snowflake:
+            type: SNOWFLAKE
+
+        # 分片算法定义
+        sharding-algorithms:
+          db_inline:
+            type: INLINE
+            props:
+              algorithm-expression: ds_$->{order_id % 2}
+          t_order_inline:
+            type: INLINE
+            props:
+              algorithm-expression: t_order_$->{order_id % 2}
+
+        # 逻辑表 t_order 的分片规则
+        tables:
+          t_order:
+            actual-data-nodes: ds_$->{0..1}.t_order_$->{0..1}
+            database-strategy:
+              standard:
+                sharding-column: order_id
+                sharding-algorithm-name: db_inline
+            table-strategy:
+              standard:
+                sharding-column: order_id
+                sharding-algorithm-name: t_order_inline
+            key-generate-strategy:
+              column: order_id
+              key-generator-name: snowflake
+

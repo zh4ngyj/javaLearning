@@ -1,5 +1,5 @@
 #
 
-# ??????? (Spring Boot 2.x ???)
+# autoconfigure (Spring Boot 2.x )
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.example.greeting.GreetingAutoConfiguration
