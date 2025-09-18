@@ -42,9 +42,7 @@ public class OrderRepository {
     public List<Order> listRecent(int limit) {
         String sql = "SELECT order_id, user_id, amount, status, create_time " +
                 "FROM t_order ORDER BY create_time DESC LIMIT ?";
-        return jdbcTemplate.query(sql, rs -> {
-            new Object(); // placeholder
-        }, ps -> ps.setInt(1, limit), (rs, rowNum) -> {
+        List<Order> orders = jdbcTemplate.query(sql, ps -> ps.setInt(1, limit), (rs, rowNum) -> {
             Order o = new Order();
             o.setOrderId(rs.getLong("order_id"));
             o.setUserId(rs.getLong("user_id"));
@@ -53,5 +51,6 @@ public class OrderRepository {
             o.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
             return o;
         });
+        return orders;
     }
 }
