@@ -1,0 +1,21 @@
+# Greeting properties
+greeting:
+  prefix: hi,
+  suffix: !
+  enabled: true
+  web-enabled: true
+  health-enabled: true
+  language: en
+  cache-enabled: false
+  cache-expire-seconds: 300
+
+# Actuator properties
+management:
+  endpoints.web.exposure.include: health,info,greeting
+  endpoint.health.show-details: always
+  info.env.enabled: true
+
+springdoc:
+  api-docs:
+    # UTF-8
+    enabled: false
